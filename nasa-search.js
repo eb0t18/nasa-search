@@ -55,6 +55,8 @@ export class NasaSearch extends LitElement {
     this.items = [];
   }
 
+
+
   render() {
     return html`
     <h2>${this.title}</h2>
@@ -65,12 +67,18 @@ export class NasaSearch extends LitElement {
       </div>
     </details>
     <div class="results">
+      
       ${this.items.map((item, index) => html`
+
+    <a href ="${item.links[0].href}" target = "_blank"> 
       <nasa-image
         source="${item.links[0].href}"
         title="${item.data[0].title}"
       ></nasa-image>
       `)}
+      </a>
+    
+     
     </div>
     `;
   }

@@ -24,7 +24,8 @@ export class NasaImage extends LitElement {
     }
 
     .image div {
-    max-width: 200px;
+    max-width: 240px;
+    max-height: auto;
     font-size: 16px;
     font-weight: bold;
     }
