@@ -1,6 +1,10 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css } from "lit";
+import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./nasa-image.js";
-export class NasaSearch extends LitElement {
+
+
+export class NasaSearch extends DDDSuper(I18NMixin(LitElement)) {
   static get properties() {
     return {
       title: { type: String },
@@ -44,6 +48,7 @@ export class NasaSearch extends LitElement {
         line-height: 40px;
         width: 100%;
       }
+   
     `;
   }
 
@@ -74,9 +79,11 @@ export class NasaSearch extends LitElement {
       <nasa-image
         source="${item.links[0].href}"
         title="${item.data[0].title}"
+        alt="${this.title}"
+        secondaryOwner="${item.data[0].secondary_creator}"
       ></nasa-image>
-      `)}
       </a>
+       `)}
     
      
     </div>
@@ -114,6 +121,11 @@ export class NasaSearch extends LitElement {
 
   static get tag() {
     return 'nasa-search';
+  }
+
+  static get haxProperties() {
+    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
+      .href;
   }
 }
 customElements.define(NasaSearch.tag, NasaSearch);
